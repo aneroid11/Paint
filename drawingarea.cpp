@@ -31,8 +31,10 @@ void DrawingArea::addShape(Shape *shape)
 {
     if (shapesListSize < shapes.size())
     {
-        shapesListSize = 0;
-        shapes.clear();
+        while (shapes.size() > shapesListSize)
+        {
+            shapes.pop_back();
+        }
     }
 
     shapes.append(shape);
