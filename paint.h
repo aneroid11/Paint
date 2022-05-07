@@ -1,21 +1,23 @@
 #ifndef PAINT_H
 #define PAINT_H
 
-#include <QWidget>
+#include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Paint; }
 QT_END_NAMESPACE
 
-class Paint : public QWidget
+class Paint : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    Paint(QWidget *parent = nullptr);
+    Paint(QMainWindow *parent = nullptr);
     ~Paint();
 
 private:
+    void paintEvent(QPaintEvent *event);
+
     Ui::Paint *ui;
 };
 #endif // PAINT_H
