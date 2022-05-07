@@ -9,7 +9,7 @@ class RECTANGLE_EXPORT Rectangle : public Shape
 {
 public:
     Rectangle() {}
-    ~Rectangle() override;
+    ~Rectangle() override {}
 
     std::string getName() const override;
 };
