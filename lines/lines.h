@@ -11,7 +11,7 @@ public:
     Lines() {}
     ~Lines() override {}
 
-    //void update() override;
+    void update() override;
     void draw(QPainter &painter, QPoint localMousePos) const override;
     std::string getName() const override;
     std::string dumps() const override;

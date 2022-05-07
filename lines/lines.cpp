@@ -4,6 +4,11 @@
 
 using json = nlohmann::json;
 
+void Lines::update()
+{
+
+}
+
 void Lines::draw(QPainter &painter, QPoint localMousePos) const
 {
     QPen pen(this->currentPenColor);
@@ -41,10 +46,6 @@ void Lines::startDrawing(const QPoint startPoint)
 void Lines::setNextPoint(const QPoint nextPoint)
 {
     this->points.append(nextPoint);
-    if (this->points.size() == 5)
-    {
-        this->finishedDrawing = true;
-    }
 }
 
 // for exporting

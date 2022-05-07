@@ -10,6 +10,7 @@
 #include <QColorDialog>
 #include <QString>
 #include <QList>
+#include <QShortcut>
 
 #include <iostream>
 
@@ -53,21 +54,27 @@ Paint::Paint(QWidget *parent)
     brushColorButton->setText("Select brush color");
     connect(brushColorButton, &QPushButton::clicked, this, &Paint::selectBrushColor);
 
-    QPushButton *undoButton = new QPushButton(this);
+    connect(new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_Z), this),
+            &QShortcut::activated, this->drawingArea, &DrawingArea::undo);
+
+    connect(new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_Y), this),
+            &QShortcut::activated, this->drawingArea, &DrawingArea::redo);
+
+    /*QPushButton *undoButton = new QPushButton(this);
     undoButton->setText("Undo");
     connect(undoButton, &QPushButton::clicked, this->drawingArea, &DrawingArea::undo);
 
     QPushButton *redoButton = new QPushButton(this);
     redoButton->setText("Redo");
-    connect(redoButton, &QPushButton::clicked, this->drawingArea, &DrawingArea::redo);
+    connect(redoButton, &QPushButton::clicked, this->drawingArea, &DrawingArea::redo);*/
 
     gridLayout->addWidget(this->drawingArea, 0, 0);
     gridLayout->addWidget(shapesList, 1, 0);
     gridLayout->addWidget(lineWidth, 2, 0);
     gridLayout->addWidget(penColorButton, 3, 0);
     gridLayout->addWidget(brushColorButton, 4, 0);
-    gridLayout->addWidget(undoButton, 5, 0);
-    gridLayout->addWidget(redoButton, 6, 0);
+    //gridLayout->addWidget(undoButton, 5, 0);
+    //gridLayout->addWidget(redoButton, 6, 0);
 }
 
 Paint::~Paint()
