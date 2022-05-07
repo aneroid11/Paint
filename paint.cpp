@@ -24,6 +24,7 @@ Paint::~Paint()
 void Paint::updatePaint()
 {
     qDebug() << "update paint\n";
+    x += 5;
     this->repaint();
 }
 
@@ -33,5 +34,5 @@ void Paint::paintEvent(QPaintEvent *event)
 
     QPainter painter(this);
     painter.setPen(Qt::SolidLine);
-    painter.drawLine(30, 30, 30, 200);
+    painter.drawLine(x, 30, x, 200);
 }

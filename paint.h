@@ -24,5 +24,6 @@ private:
 
     Ui::Paint *ui;
     QTimer *paintTimer;
+    int x = 30;
 };
 #endif // PAINT_H
