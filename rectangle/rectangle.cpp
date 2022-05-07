@@ -1,5 +1,6 @@
 #include "rectangle.h"
 
-Rectangle::Rectangle()
+std::string Rectangle::getName() const
 {
+    return "rectangle";
 }

@@ -22,7 +22,8 @@ SOURCES += \
 
 HEADERS += \
     drawingarea.h \
-    paint.h
+    paint.h \
+    shape.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

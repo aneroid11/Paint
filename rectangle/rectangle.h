@@ -3,10 +3,15 @@
 
 #include "rectangle_global.h"
 
-class RECTANGLE_EXPORT Rectangle
+#include "../shape.h"
+
+class RECTANGLE_EXPORT Rectangle : public Shape
 {
 public:
-    Rectangle();
+    Rectangle() {}
+    ~Rectangle() override;
+
+    std::string getName() const override;
 };
 
 #endif // RECTANGLE_H
