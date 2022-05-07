@@ -11,6 +11,11 @@ qmake .
 make
 cp *.so ../build/shapes/
 
+cd ../lines/
+qmake .
+make
+cp *.so ../build/shapes/
+
 cd ../build
 qmake ../
 make
