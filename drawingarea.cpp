@@ -15,17 +15,29 @@ DrawingArea::DrawingArea(QWidget *parent) : QWidget(parent)
     this->redrawTimer->start();
 }
 
+void DrawingArea::updateArea()
+{
+    this->repaint();
+}
+
 void DrawingArea::paintEvent(QPaintEvent *event)
 {
     QWidget::paintEvent(event);
 
     QPainter painter(this);
-    QPen pen;
+    // iterate over all shapes and draw them here
+
+    for (auto s : shapes)
+    {
+        s->draw(painter);
+    }
+
+    /*QPen pen;
     pen.setStyle(Qt::SolidLine);
     pen.setColor(currentPenColor);
     pen.setWidth(currentLineWidth);
     painter.setPen(pen);
     painter.setBrush(QBrush(currentBrushColor));
 
-    painter.drawEllipse(QPoint(this->width() / 2, this->height() / 2), 50, 40);
+    painter.drawEllipse(QPoint(this->width() / 2, this->height() / 2), 50, 40);*/
 }

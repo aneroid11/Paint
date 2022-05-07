@@ -4,6 +4,11 @@
 
 using json = nlohmann::json;
 
+void Rectangle::draw(QPainter &painter) const
+{
+    painter.drawRect(rand() % 400, rand() % 400, rand() % 400, rand() % 400);
+}
+
 std::string Rectangle::getName() const
 {
     return "rectangle";

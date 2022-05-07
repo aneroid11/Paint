@@ -1,7 +1,10 @@
 #ifndef DRAWINGAREA_H
 #define DRAWINGAREA_H
 
+#include "shape.h"
+
 #include <QWidget>
+#include <QList>
 
 class DrawingArea : public QWidget
 {
@@ -13,11 +16,15 @@ public:
     void setCurrentBrushColor(QColor cl) { this->currentBrushColor = cl; }
     void setCurrentLineWidth(int currentLineWidth) { this->currentLineWidth = currentLineWidth; }
 
+    void addShape(Shape *shape) { shapes.append(shape); }
+
 private slots:
-    void updateArea() { this->repaint(); }
+    void updateArea();
 
 private:
     void paintEvent(QPaintEvent *event);
+
+    QList<Shape *> shapes;
 
     QTimer *redrawTimer;
     QColor currentPenColor;

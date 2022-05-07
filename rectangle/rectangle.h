@@ -11,6 +11,7 @@ public:
     Rectangle() {}
     ~Rectangle() override {}
 
+    void draw(QPainter &painter) const override;
     std::string getName() const override;
     std::string dumps() const override;
 };
