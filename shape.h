@@ -22,7 +22,7 @@ public:
     void setCurrentBrushColor(QColor currentBrushColor) { this->currentBrushColor = currentBrushColor; }
     void setCurrentLineWidth(int currentLineWidth) { this->currentLineWidth = currentLineWidth; }
 
-    void setPoints(const QList<QPoint> &points) { this->points = points; }
+    //void setPoints(const QVector<QPoint> &points) { this->points = points; }
 
     virtual void startDrawing(const QPoint startPoint) = 0;
     virtual void setNextPoint(const QPoint nextPoint) = 0;
@@ -34,7 +34,7 @@ protected:
     QColor currentBrushColor;
     int currentLineWidth = 1;
 
-    QList<QPoint> points;
+    QVector<QPoint> points;
     bool finishedDrawing = false;
 };
 

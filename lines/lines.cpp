@@ -11,19 +11,8 @@ void Lines::draw(QPainter &painter, QPoint localMousePos) const
     painter.setPen(pen);
     painter.setBrush(QBrush(this->currentBrushColor));
 
-    QPoint firstPoint = this->points[0];
-    QPoint secondPoint;
-
-    if (this->points.size() < 2)
-    {
-        secondPoint = localMousePos;
-    }
-    else
-    {
-        secondPoint = this->points[1];
-    }
-
-    painter.drawLine(firstPoint, secondPoint);
+    QPolygon poly(this->points);
+    painter.drawPolyline(poly);
 }
 
 std::string Lines::getName() const
@@ -46,8 +35,7 @@ void Lines::startDrawing(const QPoint startPoint)
 void Lines::setNextPoint(const QPoint nextPoint)
 {
     this->points.append(nextPoint);
-
-    if (this->points.size() == 2)
+    if (this->points.size() == 5)
     {
         this->finishedDrawing = true;
     }
