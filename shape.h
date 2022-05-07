@@ -13,6 +13,5 @@ public:
 };
 
 typedef Shape *(* ShapeCreator)();
-typedef void(* ShapeDeleter)(Shape *);
 
 #endif // SHAPE_H
