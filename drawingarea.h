@@ -24,6 +24,7 @@ private slots:
     void updateArea();
 
 private:
+    void mousePressEvent(QMouseEvent *event);
     void paintEvent(QPaintEvent *event);
 
     QList<Shape *> shapes;
