@@ -18,12 +18,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     drawingarea.cpp \
     main.cpp \
-    paint.cpp
+    paint.cpp \
+    shapesmanager.cpp
 
 HEADERS += \
     drawingarea.h \
     paint.h \
-    shape.h
+    shape.h \
+    shapesmanager.h
 
 LIBS += -ldl
 

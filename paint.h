@@ -2,6 +2,7 @@
 #define PAINT_H
 
 #include "drawingarea.h"
+#include "shapesmanager.h"
 
 #include <QWidget>
 #include <QTimer>
@@ -26,5 +27,6 @@ private:
     QColor getColorFromUser() const;
 
     DrawingArea *drawingArea;
+    ShapesManager *shapesManager;
 };
 #endif // PAINT_H

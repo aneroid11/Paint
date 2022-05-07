@@ -1,5 +1,4 @@
 #include "paint.h"
-#include "drawingarea.h"
 #include "shape.h"
 
 #include <QPainter>
@@ -15,41 +14,6 @@
 #include <dlfcn.h>
 #include <filesystem>
 #include <iostream>
-
-//QList<QString> loadShapesList()
-void loadShapesList()
-{
-    namespace fs = std::filesystem;
-
-    QList<QString> shapes;
-    std::string path = "./shapes/";
-
-    ShapeCreator createShape;
-    ShapeDeleter deleteShape;
-
-    //std::string shapeSoPath = entry.path();
-    std::string shapeSoPath = "./shapes/librectangle.so";
-    void *so = dlopen(shapeSoPath.c_str(), RTLD_NOW | RTLD_LAZY);
-    if (!so)
-    {
-        std::cerr << "Cannot load dll\n";
-        std::cerr << dlerror() << "\n";
-        exit(-1);
-    }
-
-    std::cout << shapeSoPath << "\n";
-
-    createShape = (ShapeCreator)dlsym(so, "createShape");
-    deleteShape = (ShapeDeleter)dlsym(so, "deleteShape");
-
-    Shape *s = createShape();
-
-    std::cout << s->getName() << "\n";
-
-    deleteShape(s);
-
-    dlclose(so);
-}
 
 Paint::Paint(QWidget *parent)
     : QWidget(parent)
@@ -88,11 +52,12 @@ Paint::Paint(QWidget *parent)
     gridLayout->addWidget(penColorButton, 3, 0);
     gridLayout->addWidget(brushColorButton, 4, 0);
 
-    loadShapesList();
+    this->shapesManager = new ShapesManager("./shapes/");
 }
 
 Paint::~Paint()
 {
+    delete this->shapesManager;
 }
 
 QColor Paint::getColorFromUser() const
