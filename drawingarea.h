@@ -46,6 +46,8 @@ private:
     QColor currentBrushColor;
     int currentLineWidth = 1;
     std::string currentShapeName;
+
+    QPoint mousePos;
 };
 
 #endif // DRAWINGAREA_H

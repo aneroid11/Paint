@@ -86,6 +86,7 @@ void DrawingArea::mousePressEvent(QMouseEvent *event)
 
 void DrawingArea::mouseMoveEvent(QMouseEvent *event)
 {
+    this->mousePos = event->pos();
 }
 
 void DrawingArea::paintEvent(QPaintEvent *event)
@@ -94,10 +95,10 @@ void DrawingArea::paintEvent(QPaintEvent *event)
 
     QPainter painter(this);
 
-    for (int i = 0; i < shapesListSize; i++)
+    for (int i = 0; i < this->shapesListSize; i++)
     {
-        Shape *s = shapes[i];
+        Shape *s = this->shapes[i];
         s->update();
-        s->draw(painter);
+        s->draw(painter, this->mousePos);
     }
 }

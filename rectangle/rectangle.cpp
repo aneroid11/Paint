@@ -4,7 +4,7 @@
 
 using json = nlohmann::json;
 
-void Rectangle::draw(QPainter &painter) const
+void Rectangle::draw(QPainter &painter, QPoint localMousePos) const
 {
     QPen pen(this->currentPenColor);
     pen.setWidth(this->currentLineWidth);

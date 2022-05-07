@@ -14,7 +14,7 @@ public:
     virtual ~Shape() {}
 
     virtual void update() {}
-    virtual void draw(QPainter &painter) const = 0;
+    virtual void draw(QPainter &painter, QPoint localMousePos) const = 0;
     virtual std::string getName() const = 0;
     virtual std::string dumps() const = 0;
 
