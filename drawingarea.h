@@ -9,7 +9,8 @@ class DrawingArea : public QWidget
 public:
     explicit DrawingArea(QWidget *parent = nullptr);
 
-    void setCurrentColor(QColor currentColor) { this->currentColor = currentColor; }
+    void setCurrentPenColor(QColor cl) { this->currentPenColor = cl; }
+    void setCurrentBrushColor(QColor cl) { this->currentBrushColor = cl; }
     void setCurrentLineWidth(int currentLineWidth) { this->currentLineWidth = currentLineWidth; }
 
 private slots:
@@ -19,7 +20,8 @@ private:
     void paintEvent(QPaintEvent *event);
 
     QTimer *redrawTimer;
-    QColor currentColor;
+    QColor currentPenColor;
+    QColor currentBrushColor;
     int currentLineWidth = 1;
 };
 

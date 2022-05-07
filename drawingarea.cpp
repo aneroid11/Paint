@@ -21,10 +21,11 @@ void DrawingArea::paintEvent(QPaintEvent *event)
 
     QPainter painter(this);
     QPen pen;
-    pen.setColor(currentColor);
     pen.setStyle(Qt::SolidLine);
+    pen.setColor(currentPenColor);
     pen.setWidth(currentLineWidth);
     painter.setPen(pen);
+    painter.setBrush(QBrush(currentBrushColor));
 
-    painter.drawLine(20, 30, 20, 200);
+    painter.drawEllipse(QPoint(this->width() / 2, this->height() / 2), 50, 40);
 }

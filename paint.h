@@ -1,10 +1,11 @@
 #ifndef PAINT_H
 #define PAINT_H
 
+#include "drawingarea.h"
+
 #include <QWidget>
 #include <QTimer>
 
-class DrawingArea;
 class QSlider;
 
 class Paint : public QWidget
@@ -16,10 +17,14 @@ public:
     ~Paint();
 
 private slots:
-    void selectColor();
+    void selectPenColor() { this->drawingArea->setCurrentPenColor(this->getColorFromUser()); }
+    void selectBrushColor() { this->drawingArea->setCurrentBrushColor(this->getColorFromUser()); }
+
     void updateLineWidth(int lineWidth);
 
 private:
+    QColor getColorFromUser() const;
+
     DrawingArea *drawingArea;
 };
 #endif // PAINT_H

@@ -32,25 +32,30 @@ Paint::Paint(QWidget *parent)
     lineWidth->setTickInterval(1);
     connect(lineWidth, &QSlider::valueChanged, this, &Paint::updateLineWidth);
 
-    QPushButton *colorButton = new QPushButton(this);
-    colorButton->setText("Select color");
-    connect(colorButton, &QPushButton::clicked, this, &Paint::selectColor);
+    QPushButton *penColorButton = new QPushButton(this);
+    penColorButton->setText("Select line color");
+    connect(penColorButton, &QPushButton::clicked, this, &Paint::selectPenColor);
+
+    QPushButton *brushColorButton = new QPushButton(this);
+    brushColorButton->setText("Select brush color");
+    connect(brushColorButton, &QPushButton::clicked, this, &Paint::selectBrushColor);
 
     gridLayout->addWidget(this->drawingArea, 0, 0);
     gridLayout->addWidget(shapesList, 1, 0);
     gridLayout->addWidget(lineWidth, 2, 0);
-    gridLayout->addWidget(colorButton, 3, 0);
+    gridLayout->addWidget(penColorButton, 3, 0);
+    gridLayout->addWidget(brushColorButton, 4, 0);
 }
 
 Paint::~Paint()
 {
 }
 
-void Paint::selectColor()
+QColor Paint::getColorFromUser() const
 {
     QColorDialog dialog;
     QColor color = dialog.getColor();
-    this->drawingArea->setCurrentColor(color);
+    return color;
 }
 
 void Paint::updateLineWidth(int lineWidth)
