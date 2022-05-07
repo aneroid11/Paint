@@ -11,8 +11,14 @@ void Lines::draw(QPainter &painter, QPoint localMousePos) const
     painter.setPen(pen);
     painter.setBrush(QBrush(this->currentBrushColor));
 
-    QPolygon poly(this->points);
-    painter.drawPolyline(poly);
+    QVector<QPoint> points = this->points;
+
+    if (!finishedDrawing)
+    {
+        points.append(localMousePos);
+    }
+
+    painter.drawPolyline(points);
 }
 
 std::string Lines::getName() const
