@@ -2,6 +2,8 @@
 #define SHAPE_H
 
 #include <QPainter>
+#include <QPoint>
+#include <QList>
 
 #include <string>
 
@@ -19,10 +21,14 @@ public:
     void setCurrentBrushColor(QColor currentBrushColor) { this->currentBrushColor = currentBrushColor; }
     void setCurrentLineWidth(int currentLineWidth) { this->currentLineWidth = currentLineWidth; }
 
+    void setPoints(const QList<QPoint> &points) { this->points = points; }
+
 protected:
     QColor currentPenColor;
     QColor currentBrushColor;
     int currentLineWidth = 1;
+
+    QList<QPoint> points;
 };
 
 typedef Shape *(* ShapeCreator)();

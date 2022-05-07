@@ -10,7 +10,7 @@ void Rectangle::draw(QPainter &painter) const
     pen.setWidth(this->currentLineWidth);
     painter.setPen(pen);
     painter.setBrush(QBrush(this->currentBrushColor));
-    painter.drawRect(rand() % 400, rand() % 400, rand() % 400, rand() % 400);
+    painter.drawRect(QRect(points[0], points[1]));
 }
 
 std::string Rectangle::getName() const
