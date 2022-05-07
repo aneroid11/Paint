@@ -13,6 +13,7 @@ public:
     Shape() {}
     virtual ~Shape() {}
 
+    virtual void update() {}
     virtual void draw(QPainter &painter) const = 0;
     virtual std::string getName() const = 0;
     virtual std::string dumps() const = 0;
@@ -26,7 +27,7 @@ public:
     virtual void startDrawing(const QPoint startPoint) = 0;
     virtual void setNextPoint(const QPoint nextPoint) = 0;
 
-    bool drawingIsFinished() const { return finishedDrawing; }
+    bool drawingIsFinished() const { return this->finishedDrawing; }
 
 protected:
     QColor currentPenColor;

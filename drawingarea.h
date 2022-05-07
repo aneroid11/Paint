@@ -31,6 +31,7 @@ private slots:
 
 private:
     void mousePressEvent(QMouseEvent *event);
+    void mouseMoveEvent(QMouseEvent *event);
     void paintEvent(QPaintEvent *event);
 
     QList<Shape *> shapes;

@@ -6,13 +6,24 @@ using json = nlohmann::json;
 
 void Rectangle::draw(QPainter &painter) const
 {
-    if (this->points.size() < 2) { return; }
-
     QPen pen(this->currentPenColor);
     pen.setWidth(this->currentLineWidth);
     painter.setPen(pen);
     painter.setBrush(QBrush(this->currentBrushColor));
-    painter.drawRect(QRect(this->points[0], this->points[1]));
+
+    QPoint firstPoint = this->points[0];
+    QPoint secondPoint;
+
+    if (this->points.size() < 2)
+    {
+        secondPoint = firstPoint;
+    }
+    else
+    {
+        secondPoint = this->points[1];
+    }
+
+    painter.drawRect(QRect(firstPoint, secondPoint));
 }
 
 std::string Rectangle::getName() const

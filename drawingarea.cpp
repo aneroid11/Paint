@@ -84,6 +84,10 @@ void DrawingArea::mousePressEvent(QMouseEvent *event)
     }
 }
 
+void DrawingArea::mouseMoveEvent(QMouseEvent *event)
+{
+}
+
 void DrawingArea::paintEvent(QPaintEvent *event)
 {
     QWidget::paintEvent(event);
@@ -93,6 +97,7 @@ void DrawingArea::paintEvent(QPaintEvent *event)
     for (int i = 0; i < shapesListSize; i++)
     {
         Shape *s = shapes[i];
+        s->update();
         s->draw(painter);
     }
 }
