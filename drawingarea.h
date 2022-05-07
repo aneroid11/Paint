@@ -6,6 +6,7 @@
 
 #include <QWidget>
 #include <QList>
+#include <QDebug>
 
 class DrawingArea : public QWidget
 {
@@ -20,6 +21,10 @@ public:
     void setCurrentShapeName(std::string currentShapeName) { this->currentShapeName = currentShapeName; }
 
     void addShape(Shape *shape) { shapes.append(shape); }
+
+public slots:
+    void undo() { qDebug() << "undo\n"; }
+    void redo() { qDebug() << "redo\n"; }
 
 private slots:
     void updateArea();

@@ -24,7 +24,7 @@ Paint::Paint(QWidget *parent)
 
     this->setWindowTitle("Paint");
     this->setFixedWidth(512);
-    this->setFixedHeight(600);
+    this->setFixedHeight(640);
 
     this->drawingArea = new DrawingArea(this, this->shapesCreator);
 
@@ -53,11 +53,21 @@ Paint::Paint(QWidget *parent)
     brushColorButton->setText("Select brush color");
     connect(brushColorButton, &QPushButton::clicked, this, &Paint::selectBrushColor);
 
+    QPushButton *undoButton = new QPushButton(this);
+    undoButton->setText("Undo");
+    connect(undoButton, &QPushButton::clicked, this->drawingArea, &DrawingArea::undo);
+
+    QPushButton *redoButton = new QPushButton(this);
+    redoButton->setText("Redo");
+    connect(redoButton, &QPushButton::clicked, this->drawingArea, &DrawingArea::redo);
+
     gridLayout->addWidget(this->drawingArea, 0, 0);
     gridLayout->addWidget(shapesList, 1, 0);
     gridLayout->addWidget(lineWidth, 2, 0);
     gridLayout->addWidget(penColorButton, 3, 0);
     gridLayout->addWidget(brushColorButton, 4, 0);
+    gridLayout->addWidget(undoButton, 5, 0);
+    gridLayout->addWidget(redoButton, 6, 0);
 }
 
 Paint::~Paint()
