@@ -10,6 +10,7 @@ public:
     virtual ~Shape() {}
 
     virtual std::string getName() const = 0;
+    virtual std::string dumps() const = 0;
 };
 
 typedef Shape *(* ShapeCreator)();

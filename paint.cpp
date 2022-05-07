@@ -53,9 +53,9 @@ Paint::Paint(QWidget *parent)
     gridLayout->addWidget(brushColorButton, 4, 0);
 
     this->shapesManager = new ShapesManager("./shapes/");
-    Shape *exampleRectangle = this->shapesManager->createShape("rectangle");
+    /*Shape *exampleRectangle = this->shapesManager->createShape("rectangle");
     std::cout << exampleRectangle->getName() << "\n";
-    delete exampleRectangle;
+    delete exampleRectangle;*/
 }
 
 Paint::~Paint()

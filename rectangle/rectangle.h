@@ -12,6 +12,7 @@ public:
     ~Rectangle() override {}
 
     std::string getName() const override;
+    std::string dumps() const override;
 };
 
 #endif // RECTANGLE_H
