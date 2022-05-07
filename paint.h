@@ -1,29 +1,25 @@
 #ifndef PAINT_H
 #define PAINT_H
 
-#include <QMainWindow>
+#include <QWidget>
 #include <QTimer>
 
-QT_BEGIN_NAMESPACE
-namespace Ui { class Paint; }
-QT_END_NAMESPACE
+class DrawingArea;
+class QSlider;
 
-class Paint : public QMainWindow
+class Paint : public QWidget
 {
     Q_OBJECT
 
 public:
-    Paint(QMainWindow *parent = nullptr);
+    Paint(QWidget *parent = nullptr);
     ~Paint();
 
 private slots:
-    void updatePaint();
+    void selectColor();
+    void updateLineWidth(int lineWidth);
 
 private:
-    void paintEvent(QPaintEvent *event);
-
-    Ui::Paint *ui;
-    QTimer *paintTimer;
-    int x = 30;
+    DrawingArea *drawingArea;
 };
 #endif // PAINT_H
