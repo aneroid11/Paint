@@ -20,7 +20,7 @@ private slots:
     void selectPenColor() { this->drawingArea->setCurrentPenColor(this->getColorFromUser()); }
     void selectBrushColor() { this->drawingArea->setCurrentBrushColor(this->getColorFromUser()); }
 
-    void updateLineWidth(int lineWidth);
+    void updateLineWidth(int lineWidth) { this->drawingArea->setCurrentLineWidth(lineWidth); }
 
 private:
     QColor getColorFromUser() const;

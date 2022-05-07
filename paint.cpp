@@ -57,8 +57,3 @@ QColor Paint::getColorFromUser() const
     QColor color = dialog.getColor();
     return color;
 }
-
-void Paint::updateLineWidth(int lineWidth)
-{
-    this->drawingArea->setCurrentLineWidth(lineWidth);
-}
