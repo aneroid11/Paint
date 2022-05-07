@@ -27,6 +27,32 @@ DrawingArea::~DrawingArea()
     }
 }
 
+void DrawingArea::addShape(Shape *shape)
+{
+    if (shapesListSize < shapes.size())
+    {
+        shapesListSize = 0;
+        shapes.clear();
+    }
+
+    shapes.append(shape);
+    shapesListSize++;
+}
+
+void DrawingArea::undo()
+{
+    shapesListSize--;
+
+    if (shapesListSize < 0) { shapesListSize = 0; }
+}
+
+void DrawingArea::redo()
+{
+    shapesListSize++;
+
+    if (shapesListSize > shapes.size()) { shapesListSize = shapes.size(); }
+}
+
 void DrawingArea::updateArea()
 {
     this->repaint();
@@ -55,17 +81,9 @@ void DrawingArea::paintEvent(QPaintEvent *event)
 
     QPainter painter(this);
 
-    for (auto s : shapes)
+    for (int i = 0; i < shapesListSize; i++)
     {
+        Shape *s = shapes[i];
         s->draw(painter);
     }
-
-    /*QPen pen;
-    pen.setStyle(Qt::SolidLine);
-    pen.setColor(currentPenColor);
-    pen.setWidth(currentLineWidth);
-    painter.setPen(pen);
-    painter.setBrush(QBrush(currentBrushColor));
-
-    painter.drawEllipse(QPoint(this->width() / 2, this->height() / 2), 50, 40);*/
 }

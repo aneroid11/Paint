@@ -20,11 +20,11 @@ public:
     void setCurrentLineWidth(int currentLineWidth) { this->currentLineWidth = currentLineWidth; }
     void setCurrentShapeName(std::string currentShapeName) { this->currentShapeName = currentShapeName; }
 
-    void addShape(Shape *shape) { shapes.append(shape); }
+    void addShape(Shape *shape);
 
 public slots:
-    void undo() { qDebug() << "undo\n"; }
-    void redo() { qDebug() << "redo\n"; }
+    void undo();
+    void redo();
 
 private slots:
     void updateArea();
@@ -34,6 +34,8 @@ private:
     void paintEvent(QPaintEvent *event);
 
     QList<Shape *> shapes;
+    int shapesListSize = 0;
+
     ShapesCreator *shapesCreator;
 
     QTimer *redrawTimer;
