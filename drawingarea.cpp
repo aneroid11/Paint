@@ -16,12 +16,6 @@ DrawingArea::DrawingArea(QWidget *parent, ShapesCreator *shapesCreator) : QWidge
 
     this->shapesCreator = shapesCreator;
 
-    // example
-    for (int i = 0; i < 1; i++)
-    {
-        this->addShape(this->shapesCreator->createShape("rectangle"));
-    }
-
     this->setMouseTracking(true);
 }
 
@@ -41,6 +35,8 @@ void DrawingArea::updateArea()
 void DrawingArea::mousePressEvent(QMouseEvent *event)
 {
     qDebug() << "mouse was pressed. coordinates: " << event->x() << ", " << event->y() << "\n";
+    qDebug() << "next shape: " << this->currentShapeName.c_str();
+    this->addShape(this->shapesCreator->createShape("rectangle"));
 }
 
 void DrawingArea::paintEvent(QPaintEvent *event)

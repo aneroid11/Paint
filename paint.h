@@ -21,6 +21,7 @@ private slots:
     void selectPenColor() { this->drawingArea->setCurrentPenColor(this->getColorFromUser()); }
     void selectBrushColor() { this->drawingArea->setCurrentBrushColor(this->getColorFromUser()); }
 
+    void updateCurrentShape(QString currShape) { this->drawingArea->setCurrentShapeName(currShape.toStdString()); }
     void updateLineWidth(int lineWidth) { this->drawingArea->setCurrentLineWidth(lineWidth); }
 
 private:

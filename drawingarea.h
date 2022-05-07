@@ -17,6 +17,7 @@ public:
     void setCurrentPenColor(QColor cl) { this->currentPenColor = cl; }
     void setCurrentBrushColor(QColor cl) { this->currentBrushColor = cl; }
     void setCurrentLineWidth(int currentLineWidth) { this->currentLineWidth = currentLineWidth; }
+    void setCurrentShapeName(std::string currentShapeName) { this->currentShapeName = currentShapeName; }
 
     void addShape(Shape *shape) { shapes.append(shape); }
 
@@ -31,9 +32,12 @@ private:
     ShapesCreator *shapesCreator;
 
     QTimer *redrawTimer;
+
+    // parameters for the next shape to be drawn
     QColor currentPenColor;
     QColor currentBrushColor;
     int currentLineWidth = 1;
+    std::string currentShapeName;
 };
 
 #endif // DRAWINGAREA_H

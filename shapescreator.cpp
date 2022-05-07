@@ -27,7 +27,10 @@ ShapesCreator::ShapesCreator(std::string shapesDirPath)
         }
 
         Shape *exampleShape = create();
-        shapes[exampleShape->getName()] = create;
+
+        this->shapes[exampleShape->getName()] = create;
+        this->shapesNames.push_back(exampleShape->getName());
+
         delete exampleShape;
     }
 }

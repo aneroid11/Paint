@@ -33,11 +33,14 @@ Paint::Paint(QWidget *parent)
     QGridLayout *gridLayout = new QGridLayout(this);
 
     QComboBox *shapesList = new QComboBox(this);
-    shapesList->addItem("Rectangle");
-    shapesList->addItem("Line");
-    shapesList->addItem("Ellipse");
-    shapesList->addItem("Polygon");
-    shapesList->addItem("Lines");
+    std::list<std::string> shapesNames = this->shapesCreator->getAllShapesNames();
+
+    for (auto name : shapesNames)
+    {
+        shapesList->addItem(name.c_str());
+    }
+    connect(shapesList, &QComboBox::currentTextChanged, this, &Paint::updateCurrentShape);
+    this->updateCurrentShape((*shapesNames.begin()).c_str());
 
     QSlider *lineWidth = new QSlider(Qt::Horizontal, this);
     lineWidth->setRange(0, 10);
