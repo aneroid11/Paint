@@ -65,16 +65,23 @@ void DrawingArea::mousePressEvent(QMouseEvent *event)
     qDebug() << "mouse was pressed. coordinates: " << event->x() << ", " << event->y() << "\n";
     qDebug() << "next shape: " << this->currentShapeName.c_str();
 
-    Shape *newShape = this->shapesCreator->createShape(this->currentShapeName);
-    newShape->setCurrentBrushColor(this->currentBrushColor);
-    newShape->setCurrentPenColor(this->currentPenColor);
-    newShape->setCurrentLineWidth(this->currentLineWidth);
-    QList<QPoint> points;
-    points.append(QPoint(rand() % 400, rand() % 400));
-    points.append(QPoint(rand() % 400, rand() % 400));
-    newShape->setPoints(points);
+    QPoint mousePos = QPoint(event->x(), event->y());
 
-    this->addShape(newShape);
+    if (this->shapesListSize < 1 || this->shapes[this->shapesListSize - 1]->drawingIsFinished())
+    {
+        Shape *newShape = this->shapesCreator->createShape(this->currentShapeName);
+        newShape->setCurrentBrushColor(this->currentBrushColor);
+        newShape->setCurrentPenColor(this->currentPenColor);
+        newShape->setCurrentLineWidth(this->currentLineWidth);
+
+        newShape->startDrawing(mousePos);
+
+        this->addShape(newShape);
+    }
+    else
+    {
+        this->shapes[this->shapesListSize - 1]->setNextPoint(mousePos);
+    }
 }
 
 void DrawingArea::paintEvent(QPaintEvent *event)

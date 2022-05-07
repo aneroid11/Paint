@@ -23,12 +23,18 @@ public:
 
     void setPoints(const QList<QPoint> &points) { this->points = points; }
 
+    virtual void startDrawing(const QPoint startPoint) = 0;
+    virtual void setNextPoint(const QPoint nextPoint) = 0;
+
+    bool drawingIsFinished() const { return finishedDrawing; }
+
 protected:
     QColor currentPenColor;
     QColor currentBrushColor;
     int currentLineWidth = 1;
 
     QList<QPoint> points;
+    bool finishedDrawing = false;
 };
 
 typedef Shape *(* ShapeCreator)();

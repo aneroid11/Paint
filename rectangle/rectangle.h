@@ -14,6 +14,9 @@ public:
     void draw(QPainter &painter) const override;
     std::string getName() const override;
     std::string dumps() const override;
+
+    void startDrawing(const QPoint startPoint) override;
+    void setNextPoint(const QPoint nextPoint) override;
 };
 
 #endif // RECTANGLE_H
