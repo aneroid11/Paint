@@ -34,6 +34,8 @@ private:
     void mouseMoveEvent(QMouseEvent *event);
     void paintEvent(QPaintEvent *event);
 
+    void keyPressEvent(QKeyEvent *event);
+
     QList<Shape *> shapes;
     int shapesListSize = 0;
 

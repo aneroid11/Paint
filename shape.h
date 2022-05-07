@@ -13,7 +13,8 @@ public:
     Shape() {}
     virtual ~Shape() {}
 
-    virtual void update() {}
+    virtual void keyEventHandler(QKeyEvent *event) { (void)event; }
+
     virtual void draw(QPainter &painter, QPoint localMousePos) const = 0;
     virtual std::string getName() const = 0;
     virtual std::string dumps() const = 0;
@@ -22,7 +23,7 @@ public:
     void setCurrentBrushColor(QColor currentBrushColor) { this->currentBrushColor = currentBrushColor; }
     void setCurrentLineWidth(int currentLineWidth) { this->currentLineWidth = currentLineWidth; }
 
-    //void setPoints(const QVector<QPoint> &points) { this->points = points; }
+    void setPoints(const QVector<QPoint> &points) { this->points = points; }
 
     virtual void startDrawing(const QPoint startPoint) = 0;
     virtual void setNextPoint(const QPoint nextPoint) = 0;

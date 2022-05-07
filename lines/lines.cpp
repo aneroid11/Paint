@@ -2,11 +2,19 @@
 
 #include "../json.hpp"
 
+#include <QApplication>
+#include <QDebug>
+
 using json = nlohmann::json;
 
-void Lines::update()
+void Lines::keyEventHandler(QKeyEvent *event)
 {
-
+    if (event->key() == Qt::Key_Escape)
+    {
+        qDebug() << "handle key escape event";
+        // finish drawing
+        finishedDrawing = true;
+    }
 }
 
 void Lines::draw(QPainter &painter, QPoint localMousePos) const

@@ -17,6 +17,7 @@ DrawingArea::DrawingArea(QWidget *parent, ShapesCreator *shapesCreator) : QWidge
     this->shapesCreator = shapesCreator;
 
     this->setMouseTracking(true);
+    this->grabKeyboard();
 }
 
 DrawingArea::~DrawingArea()
@@ -101,7 +102,17 @@ void DrawingArea::paintEvent(QPaintEvent *event)
     for (int i = 0; i < this->shapesListSize; i++)
     {
         Shape *s = this->shapes[i];
-        s->update();
+        //s->update();
         s->draw(painter, this->mousePos);
+    }
+}
+
+void DrawingArea::keyPressEvent(QKeyEvent *event)
+{
+    qDebug() << "keyPressEvent()";
+
+    for (int i = 0; i < this->shapesListSize; i++)
+    {
+        this->shapes[i]->keyEventHandler(event);
     }
 }
