@@ -8,11 +8,11 @@
 
 #include "shape.h"
 
-class ShapesManager
+class ShapesCreator
 {
 public:
-    ShapesManager(std::string shapesDirPath);
-    ~ShapesManager();
+    ShapesCreator(std::string shapesDirPath);
+    ~ShapesCreator();
 
     Shape *createShape(std::string shapeName);
 

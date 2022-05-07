@@ -52,15 +52,16 @@ Paint::Paint(QWidget *parent)
     gridLayout->addWidget(penColorButton, 3, 0);
     gridLayout->addWidget(brushColorButton, 4, 0);
 
-    this->shapesManager = new ShapesManager("./shapes/");
+    this->shapesCreator = new ShapesCreator("./shapes/");
     /*Shape *exampleRectangle = this->shapesManager->createShape("rectangle");
     std::cout << exampleRectangle->getName() << "\n";
+    std::cout << exampleRectangle->dumps() << "\n";
     delete exampleRectangle;*/
 }
 
 Paint::~Paint()
 {
-    delete this->shapesManager;
+    delete this->shapesCreator;
 }
 
 QColor Paint::getColorFromUser() const

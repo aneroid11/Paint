@@ -1,8 +1,8 @@
-#include "shapesmanager.h"
+#include "shapescreator.h"
 
 #include <iostream>
 
-ShapesManager::ShapesManager(std::string shapesDirPath)
+ShapesCreator::ShapesCreator(std::string shapesDirPath)
 {
     namespace fs = std::filesystem;
 
@@ -32,7 +32,7 @@ ShapesManager::ShapesManager(std::string shapesDirPath)
     }
 }
 
-ShapesManager::~ShapesManager()
+ShapesCreator::~ShapesCreator()
 {
     for (auto it = this->dlls.begin(); it != this->dlls.end(); it++)
     {
@@ -40,7 +40,7 @@ ShapesManager::~ShapesManager()
     }
 }
 
-Shape* ShapesManager::createShape(std::string shapeName)
+Shape* ShapesCreator::createShape(std::string shapeName)
 {
     return shapes[shapeName]();
 }
