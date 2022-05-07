@@ -16,7 +16,7 @@ void Rectangle::draw(QPainter &painter, QPoint localMousePos) const
 
     if (this->points.size() < 2)
     {
-        secondPoint = firstPoint;
+        secondPoint = localMousePos;
     }
     else
     {
