@@ -4,7 +4,7 @@
 #include <QTimer>
 #include <QDebug>
 
-DrawingArea::DrawingArea(QWidget *parent) : QWidget(parent)
+DrawingArea::DrawingArea(QWidget *parent, ShapesCreator *shapesCreator) : QWidget(parent)
 {
     setBackgroundRole(QPalette::Base);
     setAutoFillBackground(true);
@@ -13,6 +13,23 @@ DrawingArea::DrawingArea(QWidget *parent) : QWidget(parent)
     this->redrawTimer->setInterval(10);
     connect(this->redrawTimer, &QTimer::timeout, this, &DrawingArea::updateArea);
     this->redrawTimer->start();
+
+    this->shapesCreator = shapesCreator;
+
+    // example
+
+    for (int i = 0; i < 10; i++)
+    {
+        this->addShape(this->shapesCreator->createShape("rectangle"));
+    }
+}
+
+DrawingArea::~DrawingArea()
+{
+    for (auto shape : shapes)
+    {
+        delete shape;
+    }
 }
 
 void DrawingArea::updateArea()

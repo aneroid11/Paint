@@ -2,6 +2,7 @@
 #define DRAWINGAREA_H
 
 #include "shape.h"
+#include "shapescreator.h"
 
 #include <QWidget>
 #include <QList>
@@ -10,7 +11,8 @@ class DrawingArea : public QWidget
 {
     Q_OBJECT
 public:
-    explicit DrawingArea(QWidget *parent = nullptr);
+    explicit DrawingArea(QWidget *parent, ShapesCreator *shapesCreator);
+    ~DrawingArea();
 
     void setCurrentPenColor(QColor cl) { this->currentPenColor = cl; }
     void setCurrentBrushColor(QColor cl) { this->currentBrushColor = cl; }
@@ -25,6 +27,7 @@ private:
     void paintEvent(QPaintEvent *event);
 
     QList<Shape *> shapes;
+    ShapesCreator *shapesCreator;
 
     QTimer *redrawTimer;
     QColor currentPenColor;

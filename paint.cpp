@@ -18,11 +18,17 @@
 Paint::Paint(QWidget *parent)
     : QWidget(parent)
 {
+    this->shapesCreator = new ShapesCreator("./shapes/");
+    /*Shape *exampleRectangle = this->shapesManager->createShape("rectangle");
+    std::cout << exampleRectangle->getName() << "\n";
+    std::cout << exampleRectangle->dumps() << "\n";
+    delete exampleRectangle;*/
+
     this->setWindowTitle("Paint");
     this->setFixedWidth(512);
     this->setFixedHeight(600);
 
-    this->drawingArea = new DrawingArea(this);
+    this->drawingArea = new DrawingArea(this, this->shapesCreator);
 
     QGridLayout *gridLayout = new QGridLayout(this);
 
@@ -51,12 +57,6 @@ Paint::Paint(QWidget *parent)
     gridLayout->addWidget(lineWidth, 2, 0);
     gridLayout->addWidget(penColorButton, 3, 0);
     gridLayout->addWidget(brushColorButton, 4, 0);
-
-    this->shapesCreator = new ShapesCreator("./shapes/");
-    /*Shape *exampleRectangle = this->shapesManager->createShape("rectangle");
-    std::cout << exampleRectangle->getName() << "\n";
-    std::cout << exampleRectangle->dumps() << "\n";
-    delete exampleRectangle;*/
 }
 
 Paint::~Paint()
