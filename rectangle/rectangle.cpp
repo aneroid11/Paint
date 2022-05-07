@@ -6,6 +6,10 @@ using json = nlohmann::json;
 
 void Rectangle::draw(QPainter &painter) const
 {
+    QPen pen(this->currentPenColor);
+    pen.setWidth(this->currentLineWidth);
+    painter.setPen(pen);
+    painter.setBrush(QBrush(this->currentBrushColor));
     painter.drawRect(rand() % 400, rand() % 400, rand() % 400, rand() % 400);
 }
 

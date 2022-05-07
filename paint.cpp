@@ -11,8 +11,6 @@
 #include <QString>
 #include <QList>
 
-#include <dlfcn.h>
-#include <filesystem>
 #include <iostream>
 
 Paint::Paint(QWidget *parent)

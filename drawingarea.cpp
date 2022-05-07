@@ -36,7 +36,11 @@ void DrawingArea::mousePressEvent(QMouseEvent *event)
 {
     qDebug() << "mouse was pressed. coordinates: " << event->x() << ", " << event->y() << "\n";
     qDebug() << "next shape: " << this->currentShapeName.c_str();
-    this->addShape(this->shapesCreator->createShape("rectangle"));
+    Shape *newShape = this->shapesCreator->createShape(this->currentShapeName);
+    newShape->setCurrentBrushColor(this->currentBrushColor);
+    newShape->setCurrentPenColor(this->currentPenColor);
+    newShape->setCurrentLineWidth(this->currentLineWidth);
+    this->addShape(newShape);
 }
 
 void DrawingArea::paintEvent(QPaintEvent *event)
