@@ -41,6 +41,7 @@ ShapesCreator::~ShapesCreator()
     {
         dlclose(it->second);
     }
+    std::cout << "closed all plugin dlls\n";
 }
 
 Shape* ShapesCreator::createShape(std::string shapeName)

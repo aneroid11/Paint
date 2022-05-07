@@ -21,7 +21,7 @@ public:
 private:
     std::map<std::string, void *> dlls;
 
-    // name of the shape -> its creator and deleter
+    // name of the shape -> its creator
     std::map<std::string, ShapeCreator> shapes;
     std::list<std::string> shapesNames;
 };

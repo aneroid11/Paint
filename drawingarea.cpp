@@ -21,38 +21,44 @@ DrawingArea::DrawingArea(QWidget *parent, ShapesCreator *shapesCreator) : QWidge
 
 DrawingArea::~DrawingArea()
 {
+    // we COULD do this, but shape dlls are closed BEFORE this destructor is called.
+    // and it caused segmentation fault.
+
+    /*qDebug() << "deleting shapes\n";
+
     for (auto shape : shapes)
     {
         delete shape;
-    }
+    }*/
 }
 
 void DrawingArea::addShape(Shape *shape)
 {
-    if (shapesListSize < shapes.size())
+    if (this->shapesListSize < this->shapes.size())
     {
-        while (shapes.size() > shapesListSize)
+        while (this->shapes.size() > this->shapesListSize)
         {
-            shapes.pop_back();
+            delete this->shapes[this->shapes.size() - 1];
+            this->shapes.pop_back();
         }
     }
 
-    shapes.append(shape);
-    shapesListSize++;
+    this->shapes.append(shape);
+    this->shapesListSize++;
 }
 
 void DrawingArea::undo()
 {
-    shapesListSize--;
+    this->shapesListSize--;
 
-    if (shapesListSize < 0) { shapesListSize = 0; }
+    if (this->shapesListSize < 0) { this->shapesListSize = 0; }
 }
 
 void DrawingArea::redo()
 {
-    shapesListSize++;
+    this->shapesListSize++;
 
-    if (shapesListSize > shapes.size()) { shapesListSize = shapes.size(); }
+    if (this->shapesListSize > this->shapes.size()) { this->shapesListSize = this->shapes.size(); }
 }
 
 void DrawingArea::updateArea()
@@ -62,9 +68,6 @@ void DrawingArea::updateArea()
 
 void DrawingArea::mousePressEvent(QMouseEvent *event)
 {
-    qDebug() << "mouse was pressed. coordinates: " << event->x() << ", " << event->y() << "\n";
-    qDebug() << "next shape: " << this->currentShapeName.c_str();
-
     QPoint mousePos = QPoint(event->x(), event->y());
 
     if (this->shapesListSize < 1 || this->shapes[this->shapesListSize - 1]->drawingIsFinished())
