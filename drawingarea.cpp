@@ -139,6 +139,15 @@ void DrawingArea::serializeDrawnShapesList()
 
 void DrawingArea::deserializeDrawnShapesList()
 {
+    if (this->shapes.size() > 0)
+    {
+        for (int i = 0; i < this->shapes.size(); i++)
+        {
+            delete this->shapes[i];
+        }
+        this->shapes.clear();
+    }
+
     this->shapes = loadShapesListFromFile("shapesList.json");
     this->shapesListSize = this->shapes.size();
 }
