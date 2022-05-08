@@ -1,25 +1,18 @@
 mkdir build
 mkdir build/shapes
 
-cd ./rectangle/
-qmake .
-make
-cp *.so ../build/shapes/
+cd build/
 
-cd ../line/
-qmake .
-make
-cp *.so ../build/shapes/
+declare -a shapes_names
+shapes_names=(rectangle line lines polygon)
 
-cd ../lines/
-qmake .
-make
-cp *.so ../build/shapes/
-
-cd ../polygon/
-qmake .
-make
-cp *.so ../build/shapes/
+for shape_name in "${shapes_names[@]}"
+do
+    cd "../$shape_name/"
+    qmake .
+	make
+	cp *.so ../build/shapes/
+done
 
 cd ../build
 qmake ../
