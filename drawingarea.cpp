@@ -152,6 +152,6 @@ void DrawingArea::deserializeDrawnShapesList()
         this->shapes.clear();
     }
 
-    this->shapes = loadShapesListFromFile("shapesList.json");
+    this->shapes = loadShapesListFromFile("shapesList.json", this->shapesCreator);
     this->shapesListSize = this->shapes.size();
 }
