@@ -20,7 +20,8 @@ DrawingArea::DrawingArea(QWidget *parent, ShapesCreator *shapesCreator) : QWidge
     this->setMouseTracking(true);
     this->grabKeyboard();
 
-    this->deserializeDrawnShapesList();
+    // this is needed
+    //this->deserializeDrawnShapesList();
 }
 
 DrawingArea::~DrawingArea()
@@ -65,6 +66,8 @@ void DrawingArea::undo()
     this->shapesListSize--;
 
     if (this->shapesListSize < 0) { this->shapesListSize = 0; }
+
+    this->serializeDrawnShapesList();
 }
 
 void DrawingArea::redo()
@@ -72,6 +75,8 @@ void DrawingArea::redo()
     this->shapesListSize++;
 
     if (this->shapesListSize > this->shapes.size()) { this->shapesListSize = this->shapes.size(); }
+
+    this->serializeDrawnShapesList();
 }
 
 void DrawingArea::updateArea()
