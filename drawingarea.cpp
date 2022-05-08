@@ -56,8 +56,6 @@ void DrawingArea::undo()
     this->shapesListSize--;
 
     if (this->shapesListSize < 0) { this->shapesListSize = 0; }
-
-    this->serializeDrawnShapesList();
 }
 
 void DrawingArea::redo()
@@ -65,8 +63,6 @@ void DrawingArea::redo()
     this->shapesListSize++;
 
     if (this->shapesListSize > this->shapes.size()) { this->shapesListSize = this->shapes.size(); }
-
-    this->serializeDrawnShapesList();
 }
 
 void DrawingArea::updateArea()
@@ -92,11 +88,6 @@ void DrawingArea::mousePressEvent(QMouseEvent *event)
     else
     {
         this->shapes[this->shapesListSize - 1]->setNextPoint(mousePos);
-
-        if (this->shapes[this->shapesListSize - 1]->drawingIsFinished())
-        {
-            this->serializeDrawnShapesList();
-        }
     }
 }
 
@@ -124,7 +115,6 @@ void DrawingArea::keyPressEvent(QKeyEvent *event)
     {
         this->shapes[i]->keyEventHandler(event);
     }
-    this->serializeDrawnShapesList();
 }
 
 void DrawingArea::serializeDrawnShapesList()
