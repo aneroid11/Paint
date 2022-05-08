@@ -3,12 +3,13 @@
 
 #include "shape.h"
 #include "shapescreator.h"
+#include "iobserser.h"
 
 #include <QWidget>
 #include <QList>
 #include <QDebug>
 
-class DrawingArea : public QWidget
+class DrawingArea : public QWidget, IObserver
 {
     Q_OBJECT
 public:
@@ -21,6 +22,8 @@ public:
     void setCurrentShapeName(std::string currentShapeName) { this->currentShapeName = currentShapeName; }
 
     void addShape(Shape *shape);
+
+    void updateObserver(std::string msgFromSubject) override;
 
 public slots:
     void undo();

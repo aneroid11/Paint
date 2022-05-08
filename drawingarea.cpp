@@ -51,6 +51,14 @@ void DrawingArea::addShape(Shape *shape)
     this->shapesListSize++;
 }
 
+void DrawingArea::updateObserver(std::string msgFromSubject)
+{
+    if (msgFromSubject == "finished drawing shape")
+    {
+        this->serializeDrawnShapesList();
+    }
+}
+
 void DrawingArea::undo()
 {
     this->shapesListSize--;
