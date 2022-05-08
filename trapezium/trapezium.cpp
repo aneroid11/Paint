@@ -70,28 +70,39 @@ void Trapezium::startDrawing(const QPoint startPoint)
 void Trapezium::setNextPoint(const QPoint nextPoint)
 {
     int currNumPoints = this->points.size();
+    QPoint currPoint = this->points[currNumPoints - 1];
 
     if (currNumPoints == 1)
     {
-        QPoint currPoint = this->points[currNumPoints - 1];
-        int deltaX = nextPoint.x() - currPoint.x();
-
-        // if the next point is on the left side
-        if (deltaX < 0)
+        if (nextPoint.x() < currPoint.x())
         {
             return;
         }
 
         this->points.append(QPoint(nextPoint.x(), currPoint.y()));
     }
+    else if (currNumPoints == 2)
+    {
+        if (nextPoint.y() < currPoint.y())
+        {
+            return;
+        }
+
+        this->points.append(nextPoint);
+    }
     else
     {
-        this->points.append(nextPoint);
-
-        if (this->points.size() > 3)
+        if (nextPoint.x() > currPoint.x())
         {
-            finishedDrawing = true;
+            return;
         }
+
+        this->points.append(QPoint(nextPoint.x(), currPoint.y()));
+    }
+
+    if (this->points.size() > 3)
+    {
+        finishedDrawing = true;
     }
 }
 
