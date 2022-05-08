@@ -1,4 +1,4 @@
-#include "lines.h"
+#include "polygon.h"
 
 #include "../json.hpp"
 
@@ -7,7 +7,7 @@
 
 using json = nlohmann::json;
 
-void Lines::keyEventHandler(QKeyEvent *event)
+void Polygon::keyEventHandler(QKeyEvent *event)
 {
     if (event->key() == Qt::Key_Escape)
     {
@@ -15,7 +15,7 @@ void Lines::keyEventHandler(QKeyEvent *event)
     }
 }
 
-void Lines::draw(QPainter &painter, QPoint localMousePos) const
+void Polygon::draw(QPainter &painter, QPoint localMousePos) const
 {
     QPen pen(this->currentPenColor);
     pen.setWidth(this->currentLineWidth);
@@ -29,29 +29,28 @@ void Lines::draw(QPainter &painter, QPoint localMousePos) const
         points.append(localMousePos);
     }
 
-    //QPolygon poly(points);
-    //painter.drawPolygon(poly);
-    painter.drawPolyline(points);
+    QPolygon poly(points);
+    painter.drawPolygon(poly);
 }
 
-std::string Lines::getName() const
+std::string Polygon::getName() const
 {
-    return "lines";
+    return "polygon";
 }
 
-std::string Lines::dumps() const
+std::string Polygon::dumps() const
 {
     json j;
     j["type"] = getName();
     return j.dump(2);
 }
 
-void Lines::startDrawing(const QPoint startPoint)
+void Polygon::startDrawing(const QPoint startPoint)
 {
     this->points.append(startPoint);
 }
 
-void Lines::setNextPoint(const QPoint nextPoint)
+void Polygon::setNextPoint(const QPoint nextPoint)
 {
     this->points.append(nextPoint);
 }
@@ -59,5 +58,5 @@ void Lines::setNextPoint(const QPoint nextPoint)
 // for exporting
 extern "C" Shape *createShape()
 {
-    return new Lines();
+    return new Polygon();
 }
