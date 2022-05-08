@@ -49,6 +49,7 @@ void DrawingArea::addShape(Shape *shape)
 
     this->shapes.append(shape);
     this->shapesListSize++;
+    this->serializeDrawnShapesList();
 }
 
 void DrawingArea::undo()
@@ -56,6 +57,8 @@ void DrawingArea::undo()
     this->shapesListSize--;
 
     if (this->shapesListSize < 0) { this->shapesListSize = 0; }
+
+    this->serializeDrawnShapesList();
 }
 
 void DrawingArea::redo()
@@ -63,6 +66,8 @@ void DrawingArea::redo()
     this->shapesListSize++;
 
     if (this->shapesListSize > this->shapes.size()) { this->shapesListSize = this->shapes.size(); }
+
+    this->serializeDrawnShapesList();
 }
 
 void DrawingArea::updateArea()
@@ -96,16 +101,6 @@ void DrawingArea::mouseMoveEvent(QMouseEvent *event)
     this->mousePos = event->pos();
 }
 
-void DrawingArea::keyPressEvent(QKeyEvent *event)
-{
-    qDebug() << "keyPressEvent()";
-
-    for (int i = 0; i < this->shapesListSize; i++)
-    {
-        this->shapes[i]->keyEventHandler(event);
-    }
-}
-
 void DrawingArea::paintEvent(QPaintEvent *event)
 {
     QWidget::paintEvent(event);
@@ -116,6 +111,14 @@ void DrawingArea::paintEvent(QPaintEvent *event)
     {
         Shape *s = this->shapes[i];
         s->draw(painter, this->mousePos);
+    }
+}
+
+void DrawingArea::keyPressEvent(QKeyEvent *event)
+{
+    for (int i = 0; i < this->shapesListSize; i++)
+    {
+        this->shapes[i]->keyEventHandler(event);
     }
 }
 
