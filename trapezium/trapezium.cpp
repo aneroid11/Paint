@@ -102,7 +102,7 @@ void Trapezium::setNextPoint(const QPoint nextPoint)
 
     if (this->points.size() > 3)
     {
-        finishedDrawing = true;
+        this->finishDrawing();
     }
 }
 

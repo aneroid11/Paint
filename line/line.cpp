@@ -49,7 +49,7 @@ void Line::setNextPoint(const QPoint nextPoint)
 
     if (this->points.size() == 2)
     {
-        this->finishedDrawing = true;
+        this->finishDrawing();
     }
 }
 

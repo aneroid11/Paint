@@ -11,7 +11,7 @@ void Lines::keyEventHandler(QKeyEvent *event)
 {
     if (event->key() == Qt::Key_Escape)
     {
-        finishedDrawing = true;
+        this->finishDrawing();
     }
 }
 
@@ -24,7 +24,7 @@ void Lines::draw(QPainter &painter, QPoint localMousePos) const
 
     QVector<QPoint> points = this->points;
 
-    if (!finishedDrawing)
+    if (!this->finishedDrawing)
     {
         points.append(localMousePos);
     }
@@ -42,7 +42,7 @@ std::string Lines::getName() const
 std::string Lines::dumps() const
 {
     json j;
-    j["type"] = getName();
+    j["type"] = this->getName();
     return j.dump(2);
 }
 

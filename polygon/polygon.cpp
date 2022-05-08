@@ -11,7 +11,7 @@ void Polygon::keyEventHandler(QKeyEvent *event)
 {
     if (event->key() == Qt::Key_Escape)
     {
-        finishedDrawing = true;
+        this->finishDrawing();
     }
 }
 
