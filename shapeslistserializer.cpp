@@ -64,6 +64,7 @@ QList<Shape *> loadShapesListFromFile(QString fileName, ShapesCreator *creator)
 
     Shape *s = creator->createShape("rectangle");
     s->setPoints( { QPoint(50, 50), QPoint(300, 300) } );
+    s->finishDrawing();
 
     retList.append(s);
 

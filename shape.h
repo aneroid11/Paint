@@ -48,9 +48,9 @@ public:
         }
     }
 
-protected:
     void finishDrawing() { this->finishedDrawing = true; this->notify("finished drawing shape"); }
 
+protected:
     QColor currentPenColor;
     QColor currentBrushColor;
     int currentLineWidth = 1;

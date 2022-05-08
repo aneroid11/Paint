@@ -20,8 +20,7 @@ DrawingArea::DrawingArea(QWidget *parent, ShapesCreator *shapesCreator) : QWidge
     this->setMouseTracking(true);
     this->grabKeyboard();
 
-    // this is needed
-    //this->deserializeDrawnShapesList();
+    this->deserializeDrawnShapesList();
 }
 
 DrawingArea::~DrawingArea()
