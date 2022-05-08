@@ -1,4 +1,5 @@
 #include "drawingarea.h"
+#include "shapeslistserializer.h"
 
 #include <QPainter>
 #include <QTimer>
@@ -18,6 +19,8 @@ DrawingArea::DrawingArea(QWidget *parent, ShapesCreator *shapesCreator) : QWidge
 
     this->setMouseTracking(true);
     this->grabKeyboard();
+
+    this->deserializeDrawnShapesList();
 }
 
 DrawingArea::~DrawingArea()
@@ -112,7 +115,23 @@ void DrawingArea::paintEvent(QPaintEvent *event)
     for (int i = 0; i < this->shapesListSize; i++)
     {
         Shape *s = this->shapes[i];
-        //s->update();
         s->draw(painter, this->mousePos);
     }
+}
+
+void DrawingArea::serializeDrawnShapesList()
+{
+    QList<Shape *> drawnShapes = this->shapes;
+
+    while (!drawnShapes[drawnShapes.size() - 1]->drawingIsFinished())
+    {
+        drawnShapes.pop_back();
+    }
+
+    dumpShapesListToFile(drawnShapes, "shapesList.json");
+}
+
+void DrawingArea::deserializeDrawnShapesList()
+{
+    this->shapes = loadShapesListFromFile("shapesList.json");
 }

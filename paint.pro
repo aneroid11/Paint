@@ -19,13 +19,15 @@ SOURCES += \
     drawingarea.cpp \
     main.cpp \
     paint.cpp \
-    shapescreator.cpp
+    shapescreator.cpp \
+    shapeslistserializer.cpp
 
 HEADERS += \
     drawingarea.h \
     paint.h \
     shape.h \
-    shapescreator.h
+    shapescreator.h \
+    shapeslistserializer.h
 
 LIBS += -ldl
 

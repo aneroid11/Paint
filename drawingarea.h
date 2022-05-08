@@ -36,6 +36,9 @@ private:
 
     void keyPressEvent(QKeyEvent *event);
 
+    void serializeDrawnShapesList();
+    void deserializeDrawnShapesList();
+
     QList<Shape *> shapes;
     int shapesListSize = 0;
 

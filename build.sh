@@ -10,10 +10,10 @@ for shape_name in "${shapes_names[@]}"
 do
     cd "../$shape_name/"
     qmake .
-	make
+	make -j8
 	cp *.so ../build/shapes/
 done
 
 cd ../build
 qmake ../
-make
+make -j8
