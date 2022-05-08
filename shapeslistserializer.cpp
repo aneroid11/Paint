@@ -62,11 +62,32 @@ QList<Shape *> loadShapesListFromFile(QString fileName, ShapesCreator *creator)
 
     QList<Shape *> retList;
 
-    Shape *s = creator->createShape("rectangle");
-    s->setPoints( { QPoint(50, 50), QPoint(300, 300) } );
-    s->finishDrawing();
+    for (int i = 0; i < shapesArray.size(); i++)
+    {
+        json currShapeJson = shapesArray[i];
 
-    retList.append(s);
+        Shape *s = creator->createShape(currShapeJson["name"]);
+        std::cout << currShapeJson["name"] << "\n";
+        QVector<QPoint> shapePoints;
+
+        for (int j = 0; j < currShapeJson["points"].size(); j++)
+        {
+            json currPointJson = currShapeJson["points"][j];
+            shapePoints.append(QPoint(currPointJson[0], currPointJson[1]));
+        }
+
+        s->setPoints(shapePoints);
+        s->setCurrentLineWidth(currShapeJson["penWidth"]);
+
+        json colorJson = currShapeJson["penColor"];
+        s->setCurrentPenColor(QColor(colorJson[0], colorJson[1], colorJson[2]));
+        colorJson = currShapeJson["brushColor"];
+        s->setCurrentBrushColor(QColor(colorJson[0], colorJson[1], colorJson[2]));
+
+        s->finishDrawing();
+
+        retList.append(s);
+    }
 
     return retList;
 }
