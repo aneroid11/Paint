@@ -17,9 +17,16 @@ void dumpShapesListToFile(const QList<Shape *> &shapesList, QString fileName)
     {
         Shape *currentShape = shapesList[i];
         shapesArray[i]["name"] = currentShape->getName();
-        shapesArray[i]["points"] = {};
+        shapesArray[i]["penWidth"] = currentShape->getCurrentLineWidth();
+
+        QColor penColor = currentShape->getCurrentPenColor();
+        shapesArray[i]["penColor"] = {penColor.red(), penColor.green(), penColor.blue()};
+
+        QColor brushColor = currentShape->getCurrentBrushColor();
+        shapesArray[i]["brushColor"] = {brushColor.red(), brushColor.green(), brushColor.blue()};
 
         QVector<QPoint> points = currentShape->getPoints();
+        shapesArray[i]["points"] = {};
 
         for (int j = 0; j < points.size(); j++)
         {

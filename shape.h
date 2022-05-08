@@ -25,6 +25,10 @@ public:
     void setCurrentBrushColor(QColor currentBrushColor) { this->currentBrushColor = currentBrushColor; }
     void setCurrentLineWidth(int currentLineWidth) { this->currentLineWidth = currentLineWidth; }
 
+    int getCurrentLineWidth() const { return this->currentLineWidth; }
+    QColor getCurrentPenColor() const { return this->currentPenColor; }
+    QColor getCurrentBrushColor() const { return this->currentBrushColor; }
+
     void setPoints(const QVector<QPoint> &points) { this->points = points; }
     QVector<QPoint> getPoints() const { return this->points; }
 
