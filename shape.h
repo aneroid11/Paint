@@ -1,13 +1,15 @@
 #ifndef SHAPE_H
 #define SHAPE_H
 
+#include "isubject.h"
+
 #include <QPainter>
 #include <QPoint>
 #include <QList>
 
 #include <string>
 
-class Shape
+class Shape : public ISubject
 {
 public:
     Shape() {}
@@ -30,6 +32,17 @@ public:
 
     bool drawingIsFinished() const { return this->finishedDrawing; }
 
+    void attachObserver(IObserver *observer) override { this->observers.push_back(observer); }
+    void detachObserver(IObserver *observer) override { this->observers.remove(observer); }
+
+    void notify(std::string msgForObservers) override
+    {
+        for (IObserver *o : this->observers)
+        {
+            o->updateObserver(msgForObservers);
+        }
+    }
+
 protected:
     QColor currentPenColor;
     QColor currentBrushColor;
@@ -37,6 +50,8 @@ protected:
 
     QVector<QPoint> points;
     bool finishedDrawing = false;
+
+    std::list<IObserver *> observers;
 };
 
 typedef Shape *(* ShapeCreator)();

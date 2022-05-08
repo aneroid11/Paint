@@ -25,6 +25,7 @@ SOURCES += \
 HEADERS += \
     drawingarea.h \
     iobserser.h \
+    isubject.h \
     paint.h \
     shape.h \
     shapescreator.h \
