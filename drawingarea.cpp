@@ -47,6 +47,7 @@ void DrawingArea::addShape(Shape *shape)
         }
     }
 
+    shape->attachObserver(this);
     this->shapes.append(shape);
     this->shapesListSize++;
 }

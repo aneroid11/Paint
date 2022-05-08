@@ -58,7 +58,7 @@ std::string Trapezium::getName() const
 std::string Trapezium::dumps() const
 {
     json j;
-    j["type"] = getName();
+    j["type"] = this->getName();
     return j.dump(2);
 }
 
