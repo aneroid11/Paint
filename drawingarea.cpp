@@ -93,6 +93,16 @@ void DrawingArea::mouseMoveEvent(QMouseEvent *event)
     this->mousePos = event->pos();
 }
 
+void DrawingArea::keyPressEvent(QKeyEvent *event)
+{
+    qDebug() << "keyPressEvent()";
+
+    for (int i = 0; i < this->shapesListSize; i++)
+    {
+        this->shapes[i]->keyEventHandler(event);
+    }
+}
+
 void DrawingArea::paintEvent(QPaintEvent *event)
 {
     QWidget::paintEvent(event);
@@ -104,15 +114,5 @@ void DrawingArea::paintEvent(QPaintEvent *event)
         Shape *s = this->shapes[i];
         //s->update();
         s->draw(painter, this->mousePos);
-    }
-}
-
-void DrawingArea::keyPressEvent(QKeyEvent *event)
-{
-    qDebug() << "keyPressEvent()";
-
-    for (int i = 0; i < this->shapesListSize; i++)
-    {
-        this->shapes[i]->keyEventHandler(event);
     }
 }

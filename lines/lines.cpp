@@ -31,7 +31,9 @@ void Lines::draw(QPainter &painter, QPoint localMousePos) const
         points.append(localMousePos);
     }
 
-    painter.drawPolyline(points);
+    QPolygon poly(points);
+    painter.drawPolygon(poly);
+    //painter.drawPolyline(points);
 }
 
 std::string Lines::getName() const
