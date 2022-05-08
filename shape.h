@@ -26,6 +26,7 @@ public:
     void setCurrentLineWidth(int currentLineWidth) { this->currentLineWidth = currentLineWidth; }
 
     void setPoints(const QVector<QPoint> &points) { this->points = points; }
+    QVector<QPoint> getPoints() const { return this->points; }
 
     virtual void startDrawing(const QPoint startPoint) = 0;
     virtual void setNextPoint(const QPoint nextPoint) = 0;

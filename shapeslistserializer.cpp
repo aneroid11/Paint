@@ -18,6 +18,14 @@ void dumpShapesListToFile(const QList<Shape *> &shapesList, QString fileName)
         Shape *currentShape = shapesList[i];
         shapesArray[i]["name"] = currentShape->getName();
         shapesArray[i]["points"] = {};
+
+        QVector<QPoint> points = currentShape->getPoints();
+
+        for (int j = 0; j < points.size(); j++)
+        {
+            QPoint currPoint = points[j];
+            shapesArray[i]["points"][j] = {currPoint.x(), currPoint.y()};
+        }
     }
 
     std::string dumped = shapesArray.dump(2);
