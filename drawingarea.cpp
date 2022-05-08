@@ -121,11 +121,14 @@ void DrawingArea::paintEvent(QPaintEvent *event)
 
 void DrawingArea::serializeDrawnShapesList()
 {
-    QList<Shape *> drawnShapes = this->shapes;
+    QList<Shape *> drawnShapes;
 
-    while (!drawnShapes[drawnShapes.size() - 1]->drawingIsFinished())
+    for (int i = 0; i < this->shapesListSize; i++)
     {
-        drawnShapes.pop_back();
+        if (this->shapes[i]->drawingIsFinished())
+        {
+            drawnShapes.append(this->shapes[i]);
+        }
     }
 
     dumpShapesListToFile(drawnShapes, "shapesList.json");
@@ -134,4 +137,5 @@ void DrawingArea::serializeDrawnShapesList()
 void DrawingArea::deserializeDrawnShapesList()
 {
     this->shapes = loadShapesListFromFile("shapesList.json");
+    this->shapesListSize = this->shapes.size();
 }
