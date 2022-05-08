@@ -15,10 +15,35 @@ void Trapezium::draw(QPainter &painter, QPoint localMousePos) const
     painter.setBrush(QBrush(this->currentBrushColor));
 
     QVector<QPoint> points = this->points;
-
     if (!finishedDrawing)
     {
-        points.append(localMousePos);
+        int numPoints = points.size();
+        QPoint currPoint = points[numPoints - 1];
+
+        switch (numPoints)
+        {
+        case 1:
+            if (currPoint.x() < localMousePos.x())
+            {
+                points.append(QPoint(localMousePos.x(), currPoint.y()));
+            }
+            break;
+        case 2:
+            if (currPoint.y() < localMousePos.y())
+            {
+                points.append(localMousePos);
+            }
+            break;
+        case 3:
+            if (currPoint.x() > localMousePos.x())
+            {
+                points.append(QPoint(localMousePos.x(), currPoint.y()));
+            }
+            break;
+        default:
+            break;
+        }
+
     }
 
     QPolygon poly(points);
