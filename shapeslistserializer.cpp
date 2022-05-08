@@ -13,6 +13,12 @@ void dumpShapesListToFile(const QList<Shape *> &shapesList, QString fileName)
     std::cout << "dump the list of shapes to " << fileName.toStdString() << "\n";
     json shapesArray = {};
 
+    for (int i = 0; i < shapesList.size(); i++)
+    {
+        Shape *currentShape = shapesList[i];
+        shapesArray[i]["name"] = currentShape->getName();
+    }
+
     std::string dumped = shapesArray.dump(2);
     std::ofstream out(fileName.toStdString());
     out << dumped;
