@@ -1,29 +1,33 @@
 #ifndef PAINT_H
 #define PAINT_H
 
-#include <QMainWindow>
+#include "drawingarea.h"
+#include "shapescreator.h"
+
+#include <QWidget>
 #include <QTimer>
 
-QT_BEGIN_NAMESPACE
-namespace Ui { class Paint; }
-QT_END_NAMESPACE
+class QSlider;
 
-class Paint : public QMainWindow
+class Paint : public QWidget
 {
     Q_OBJECT
 
 public:
-    Paint(QMainWindow *parent = nullptr);
+    Paint(QWidget *parent = nullptr);
     ~Paint();
 
 private slots:
-    void updatePaint();
+    void selectPenColor() { this->drawingArea->setCurrentPenColor(this->getColorFromUser()); }
+    void selectBrushColor() { this->drawingArea->setCurrentBrushColor(this->getColorFromUser()); }
+
+    void updateCurrentShape(QString currShape) { this->drawingArea->setCurrentShapeName(currShape.toStdString()); }
+    void updateLineWidth(int lineWidth) { this->drawingArea->setCurrentLineWidth(lineWidth); }
 
 private:
-    void paintEvent(QPaintEvent *event);
+    QColor getColorFromUser() const;
 
-    Ui::Paint *ui;
-    QTimer *paintTimer;
-    int x = 30;
+    DrawingArea *drawingArea;
+    ShapesCreator *shapesCreator;
 };
 #endif // PAINT_H
